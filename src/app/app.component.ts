@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { signal, effect } from '@angular/core';
+import { signal, effect, computed } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +26,18 @@ export class AppComponent {
     this.theme.update((currentValue) => {
       return currentValue === 'light' ? 'dark' : 'light';
     })
+  }
+
+
+  price = 19;
+  quantity = signal(10);
+
+  totalPrice = computed(() => {
+    return this.price * this.quantity();
+  })
+
+  changeQuantity(event: Event){
+    this.quantity.set((event.target as HTMLInputElement).valueAsNumber)
   }
 
 }
