@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { signal, effect, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Product } from '../product';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [RouterOutlet, CommonModule]
+  imports: [RouterOutlet, CommonModule, ProductListComponent]
 })
 export class AppComponent {
   title = 'angular-signals-exmaple';
@@ -62,5 +64,12 @@ export class AppComponent {
     let newFilterName = (event.target as HTMLInputElement).value;
     this.filterName.set(newFilterName);
   }
+
+
+  allProducts: Product[] = [
+    {id: 1, name: 'Milk', price: 2.99},
+    {id: 2, name: 'Bread', price: 1.99},
+    {id: 3, name: 'Eggs', price: 3.99},
+  ]
 
 }
